@@ -4,7 +4,7 @@ This script leverages <a href="https://translate.google.com/">Google Translate</
 # Features:
 1. Processes a list of names with multiple transliterations each.
 2. Groups identical Arabic names.
-3. Handles the presence/absens of the Article "The" (ال) in the names allowing all to be merged.
+3. Handles the presence/absens of the Article "The" (ال) in Arabic names allowing all matching names to be merged (not currently supported by <a href="https://translate.google.com/">Google Translate</a>).
 4. Prints the output and saves it to a json file.
 
 # Input: 
