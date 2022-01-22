@@ -21,13 +21,18 @@ $ python3 merge_names.py path/to/input/file.txt path/to/output/file.json
 
 # Requirements:
 
-<a href="https://www.python.org/downloads/">Python 3.X</a>
+1. <a href="https://www.python.org/downloads/">Python 3.X</a>
 
-The following Python Libraries:
+2. The following Python Libraries:
 
 googletrans
+
 collections
+
 sys
+
 os
+
 io
+
 json
