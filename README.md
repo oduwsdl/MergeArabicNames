@@ -23,16 +23,4 @@ $ python3 merge_names.py path/to/input/file.txt path/to/output/file.json
 
 1. <a href="https://www.python.org/downloads/">Python 3.X</a>
 
-2. The following Python Libraries:
-
-googletrans
-
-collections
-
-sys
-
-os
-
-io
-
-json
+2. The following Python Libraries: googletrans, collections, sys, os, io, and json.
