@@ -1,5 +1,5 @@
 # MergeArabicNames
-Merging different transliterations of an Arabic name using Google Translate.
+This script leverages <a href="https://translate.google.com/">Google Translate</a> to Merge different transliterations of an Arabic name(s).
 
 # Features:
 1. Processes a list of names with multiple transliterations each.
