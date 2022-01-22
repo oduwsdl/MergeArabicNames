@@ -22,9 +22,7 @@ def reverseDict(inputDict):
         result[value].append(key)
     return result
 
-
 def handleArticleThe(inputDict):
-
     dupes = {}
     for key, value in inputDict.items():
         if(key[0] == "ا" and key[1] == "ل"):
@@ -51,9 +49,11 @@ if __name__ == '__main__':
         
 inputFileName = sys.argv[1]
 outputFileName = sys.argv[2]
+
 if not os.path.exists(inputFileName):
     print("input file does not exist. Make sure the path is correct and try again!")
     exit()
+    
 if not os.path.exists(outputFileName):
     print("Output file does not exist. One will be created under the name (output.json)")
     outputFileName = "output.json"
