@@ -1,45 +1,51 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from googletrans import Translator
 from collections import defaultdict
-import sys
-import os
 import io
 import json
+import os
+import sys
 
-def translateNames(inputList):
+from googletrans import Translator
+
+
+def translate_names(input_list):
     translator = Translator() 
     result = {} 
-    transliterations = translator.translate(names, src='en', dest='ar')
+    transliterations = translator.translate(input_list, src='en', dest='ar')
     for transliteration in transliterations:
-        arabicName = transliteration.text
-        result[transliteration.origin] = arabicName
+        arabic_name = transliteration.text
+        result[transliteration.origin] = arabic_name
     return result
+
     
-def reverseDict(inputDict):    
+def reverse_dict(input_dict): 
     result = defaultdict(list)
-    for key, value in inputDict.items():
+    for key, value in input_dict.items():
         result[value].append(key)
     return result
 
-def handleArticleThe(inputDict):
+
+def handle_article_the(input_dict):
+
     dupes = {}
-    for key, value in inputDict.items():
+    for key, value in input_dict.items():
         if(key[0] == "ا" and key[1] == "ل"):
             dupes[key[2:]] = value
 
-    dupedKeys = []
-    for key, value in inputDict.items():
-        for dupedKey, dupedValue in dupes.items():
-            if(dupedKey == key):
-                inputDict[key] = inputDict[key] + dupes[key]
-                theKey = "ال" + key
-                dupedKeys.append(theKey)
+    duped_keys = []
+    for key, value in input_dict.items():
+        for duped_key, duped_value in dupes.items():
+            if(duped_key == key):
+                input_dict[key] = input_dict[key] + dupes[key]
+                the_key = "ال" + key
+                duped_keys.append(the_key)
             
-    for key in dupedKeys:
-        del inputDict[key]
+    for key in duped_keys:
+        del input_dict[key]
             
-    return inputDict
+    return input_dict
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
@@ -47,33 +53,32 @@ if __name__ == '__main__':
         print("e.g: python3 merge_names.py path/to/input/file.txt path/to/output/file.json")
         exit()
         
-inputFileName = sys.argv[1]
-outputFileName = sys.argv[2]
-
-if not os.path.exists(inputFileName):
+input_file_name = sys.argv[1]
+output_file_name = sys.argv[2]
+if not os.path.exists(input_file_name):
     print("input file does not exist. Make sure the path is correct and try again!")
     exit()
-    
-if not os.path.exists(outputFileName):
+if not os.path.exists(output_file_name):
     print("Output file does not exist. One will be created under the name (output.json)")
-    outputFileName = "output.json"
+    output_file_name = "output.json"
     
-if outputFileName[-5:].lower() != ".json":
+if output_file_name[-5:].lower() != ".json":
     print("Output file must be json. One will be created under the name (output.json)")
-    outputFileName = "output.json"
+    output_file_name = "output.json"
     
-with io.open(inputFileName, 'r', newline=None) as inputFile:
+with io.open(input_file_name, 'r', newline=None) as input_file:
     names = []
-    for line in inputFile:
+    for line in input_file:
         line = line.replace("\n", "")
         names.append(line)
         
-translatedNamesDict = translateNames(names)
-reversedTranslatedNames = reverseDict(translatedNamesDict)
-output  = handleArticleThe(reversedTranslatedNames)
+translated_names_dict = translate_names(names)
+reversed_translated_names = reverse_dict(translated_names_dict)
+output = handle_article_the(reversed_translated_names)
 
-for arabicName, englishNames in output.items():
-    print(arabicName, ": " ,englishNames)
+for arabic_name, english_names in output.items():
+    print(arabic_name, ": " , english_names)
 
-with open(outputFileName, "w",encoding='utf8') as outputFile:
-    json.dump(output, outputFile, ensure_ascii = False)
+with open(output_file_name, "w", encoding='utf8') as output_file:
+    json.dump(output, output_file, ensure_ascii=False)
+
