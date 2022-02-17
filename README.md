@@ -13,11 +13,20 @@ A list of Arabic names written in English (transliterations) in a .txt file
 # Output:
 transliterations grouped by their Arabic counterpart in a json format
 
+# Installation:
+```bash
+$ python3 -m pip install -r requirements.txt
+```
+
 # Usage:
+```bash
 $ python3 merge_names.py <input_file> <output_file>
+```
 
 # Example:
-$ python3 merge_names.py path/to/input/file.txt path/to/output/file.json
+```bash
+$ python3 merge_names.py ./in/input.txt ./output.json
+```
 
 # Requirements:
 
